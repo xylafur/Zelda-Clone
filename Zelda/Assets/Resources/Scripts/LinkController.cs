@@ -25,17 +25,20 @@ public class LinkController : MonoBehaviour {
 
     void CheckInput()
     {
-        if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.0f)
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f || Mathf.Abs(Input.GetAxis("Vertical")) > 0.1f)
         {
             hAxis = Input.GetAxis("Horizontal");
-            vAxis = 0.0f;
-        }
-        else if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.0f)
-        {
             vAxis = Input.GetAxis("Vertical");
-            hAxis = 0.0f;
+            if(Mathf.Abs(hAxis) > Mathf.Abs(vAxis))
+            {
+                vAxis = 0;
+            }
+            else
+            {
+                hAxis = 0;
+            }
         }
-        else
+        else if(Mathf.Abs(Input.GetAxis("Horizontal")) < 0.1 && Mathf.Abs(Input.GetAxis("Vertical")) < 0.1f)
         {
             hAxis = 0.0f;
             vAxis = 0.0f;
